@@ -2,12 +2,12 @@ package am.davsoft.test.texttospeech;
 
 //import com.sun.speech.freetts.*;
 
-import javax.speech.*;
-import javax.speech.synthesis.*;
-
+import javax.speech.Central;
+import javax.speech.synthesis.Synthesizer;
+import javax.speech.synthesis.SynthesizerModeDesc;
+import javax.speech.synthesis.Voice;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 //import javax.speech.Central;
 //import javax.speech.synthesis.Synthesizer;
 //import javax.speech.synthesis.SynthesizerModeDesc;
@@ -68,8 +68,6 @@ public class Main {
 //        v.speak(s);
 //
 //        System.exit(0);
-
-
 
 
         SynthesizerModeDesc desc = new SynthesizerModeDesc();

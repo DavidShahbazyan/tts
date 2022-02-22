@@ -1,15 +1,19 @@
 package am.davsoft.test.texttospeech;
 
+import com.sun.speech.freetts.FreeTTSSpeakableImpl;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 
+import java.io.*;
+
+import static java.lang.System.in;
 import static java.lang.System.out;
 
 public class Test {
     static VoiceManager freettsVM;
     static Voice freettsVoice;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
         demonstrateFreeTTS();
         demonstrateVoice();
@@ -20,11 +24,27 @@ public class Test {
         freettsVoice.speak(words);
     }
 
-    public static void demonstrateFreeTTS() {
+    public static void demonstrateFreeTTS() throws Exception {
         VoiceManager vm = VoiceManager.getInstance();
-        Voice voice = vm.getVoice("kevin16");
-        voice.allocate();
-        voice.speak("Hello World");
+        freettsVoice = vm.getVoice("kevin16");
+        freettsVoice.allocate();
+
+//        freettsVoice.speak(new FreeTTSSpeakableImpl(new FileInputStream("./test_files/text.txt")));
+
+//        final FileReader fileReader = new FileReader("./test_files/text.txt");
+//        BufferedReader reader = new BufferedReader(fileReader);
+//        String s;
+//        while ((s = reader.readLine()) != null) {
+//            sayWords(s);
+//        }
+//        reader.close();
+//        fileReader.close();
+
+        sayWords(PdfUtils.pdfToText("./test_files/pdf-test.pdf"));
+
+//        sayWords("Hi Grigori, how are you?");
+//        BufferedReader br = new BufferedReader(new FileReader("./test_files/text.txt"));
+//        br.lines().forEach(Test::sayWords);
 
         // Voices
         out.println("------Voices-------");
